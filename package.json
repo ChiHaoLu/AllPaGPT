@@ -40,6 +40,9 @@
     "markdown-it-highlightjs": "^4.0.1",
     "markdown-it-katex": "^2.0.3",
     "markdown-it-kbd": "^2.2.2",
+    "pdf-lib": "^1.17.1",
+    "pdf-text": "^0.4.0",
+    "pdfjs-dist": "^3.5.141",
     "solid-js": "^1.7.3",
     "solid-start": "^0.2.26",
     "undici": "^5.21.2"

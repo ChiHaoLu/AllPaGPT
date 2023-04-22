@@ -17,6 +17,8 @@ import {
 import { Selector, Switch as SwitchButton } from "../Common"
 import { useNavigate } from "solid-start"
 
+import { PDFDocument } from "pdf-lib";
+
 export const [actionState, setActionState] = createStore({
   showSetting: "none" as "none" | "global" | "session",
   success: false as false | "markdown" | "link",
@@ -299,6 +301,11 @@ export default function SettingAction() {
                 onClick={importData}
                 icon="i-carbon:download"
               />
+              <ActionItem
+                label="心得產生器外掛"
+                onClick={allpa}
+                icon="i-carbon:download"
+              />
             </div>
           </Match>
           <Match when={actionState.showSetting === "session"}>
@@ -481,3 +488,51 @@ async function importData() {
     }
   }
 }
+
+function readFileAsync(file: any) {
+  return new Promise((resolve, reject) => {
+    let reader = new FileReader();
+    reader.onload = () => {
+      resolve(reader.result);
+    };
+    reader.onerror = reject;
+    reader.readAsArrayBuffer(file);
+  });
+}
+
+function range(start: number, end: number) {
+  let length = end - start + 1;
+  return Array.from({ length }, (_, i) => start + i - 1);
+}
+
+async function extractPdfPage(arrayBuff: any) {
+  const pdfSrcDoc = await PDFDocument.load(arrayBuff);
+  const pdfNewDoc = await PDFDocument.create();
+  const pages = await pdfNewDoc.copyPages(pdfSrcDoc, range(2, 3));
+  pages.forEach((page: any) => pdfNewDoc.addPage(page));
+  const newpdf = await pdfNewDoc.save();
+  return newpdf;
+}
+
+async function allpa() {
+
+  const input = document.createElement("input")
+  input.type = "file"
+  input.accept = "application/pdf"
+  input.click()
+  input.onchange = async () => {
+    const file = input.files?.[0]
+    if (file) {
+      console.log(file)
+      const pdfArrayBuffer = await readFileAsync(file);
+      const newPdfDoc = await extractPdfPage(pdfArrayBuffer);
+      const tempblob = new Blob([newPdfDoc], {
+        type: "application/pdf",
+      });
+
+      }
+      
+    }
+  }
+}
+
