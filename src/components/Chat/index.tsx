@@ -180,7 +180,7 @@ export default function () {
     }
     const data = response.body
     if (!data) {
-      throw new Error("沒有返回數據")
+      throw new Error("沒有回傳數據")
     }
     const reader = data.getReader()
     const decoder = new TextDecoder("utf-8")

@@ -62,7 +62,7 @@ export default function SettingAction() {
       <Switch>
         <Match when={actionState.showSetting === "global"}>
           <div class="<sm:max-h-10em max-h-14em overflow-y-auto">
-            <SettingItem icon="i-ri:lock-password-line" label="网站访问密码">
+            <SettingItem icon="i-ri:lock-password-line" label="網站訪問密碼">
               <input
                 type="password"
                 value={store.globalSettings.password}
@@ -249,7 +249,7 @@ export default function SettingAction() {
                   setTimeout(() => setActionState("genImg", "normal"), 1000)
                 }}
                 icon={imgIcons[actionState.genImg]}
-                label="导出图片"
+                label="匯出圖片"
               />
               <ActionItem
                 label="Export Markdown"
@@ -290,12 +290,12 @@ export default function SettingAction() {
           <Match when={actionState.showSetting === "global"}>
             <div class="flex">
               <ActionItem
-                label="導出"
+                label="匯出"
                 onClick={exportData}
                 icon="i-carbon:export"
               />
               <ActionItem
-                label="導入"
+                label="匯入"
                 onClick={importData}
                 icon="i-carbon:download"
               />

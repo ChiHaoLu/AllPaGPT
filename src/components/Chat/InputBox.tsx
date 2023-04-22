@@ -257,7 +257,7 @@ export default function ({
             </Show>
             <div class="absolute right-0.5em bottom-0.8em flex items-center">
               <button
-                title="发送"
+                title="發送"
                 onClick={() => sendMessage(undefined, actionState.fakeRole)}
                 class="i-carbon:send-filled text-1.5em text-slate-7 dark:text-slate text-op-80! hover:text-op-100!"
               />
